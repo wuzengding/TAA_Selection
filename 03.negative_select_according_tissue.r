@@ -30,15 +30,15 @@ DegSelectDF <- DegSelectDF[-log10(DegSelectDF$padj)> 30,]
 DegSelectDF <- slice_max(DegSelectDF,order_by=log2FoldChange,n=200)
 
 EnsGeneBioDF <- read.csv(EnsGeneBio,header=1,sep="\t")
-EnsGeneBioDF <- EnsGeneBioDF[which(EnsGeneBioDF$GENE %in% rownames(DegSelectDF)),]
+EnsGeneBioDF <- EnsGeneBioDF[which(EnsGeneBioDF$gene_name %in% rownames(DegSelectDF)),]
 
 MatrixCanTisTpmDF <- read.csv(MatrixCanTisTpm,header=1, row.names=1,sep="\t")
-#MatrixCanTisTpmDF <- MatrixCanTisTpmDF[which(rownames(MatrixCanTisTpmDF) %in% EnsGeneBioDF$ENSEMBL),]
-MatrixCanTisTpmDF <-merge(MatrixCanTisTpmDF,EnsGeneBioDF,by.x=0,by.y="ENSEMBL")
-rownames(MatrixCanTisTpmDF) <- MatrixCanTisTpmDF$GENE
+#MatrixCanTisTpmDF <- MatrixCanTisTpmDF[which(rownames(MatrixCanTisTpmDF) %in% EnsGeneBioDF$gene_id),]
+MatrixCanTisTpmDF <-merge(MatrixCanTisTpmDF,EnsGeneBioDF,by.x=0,by.y="gene_id")
+rownames(MatrixCanTisTpmDF) <- MatrixCanTisTpmDF$gene_name
 MatrixCanTisTpmDF$Row.names <- NULL
-MatrixCanTisTpmDF$GENE <- NULL
-MatrixCanTisTpmDF$Transcript_Biotype <- NULL
+MatrixCanTisTpmDF$gene_name <- NULL
+MatrixCanTisTpmDF$gene_biotype <- NULL
 MatrixCanTisTpmDF <- t(MatrixCanTisTpmDF)
 MatrixCanTisTpmDF <- 2^MatrixCanTisTpmDF -0.001
 #write.csv(MatrixCanTisTpmDF,file=paste0(OutDir, "/MatrixCanTisTpmDF.csv"))
@@ -66,7 +66,7 @@ library("ggplot2")
 select_gene <-c()
 for (gene in colnames(MatrixCanTisTpmDF)) {
 	print(paste("gene:",gene))
-	if (gene != "X_primary_site"){
+	if ((gene != "X_primary_site") &&(gene != "3830403N18Rik") &&(gene != "4930503L19Rik")){
 		print(paste("gene2:",gene))
 		ggplot(MatrixCanTisTpmDF, aes_string(x="X_primary_site",y=gene))+theme(axis.text.x = element_text(angle=60,hjust=1))+
 		xlab("")+ylab("Expression TPM")+ggtitle(paste("Expression level of",gene,"in different tissues"))+

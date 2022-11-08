@@ -29,7 +29,7 @@ if (BioType %in% BioTypeItem){
 }
 
 EnsGeneBioDF <- read.csv(EnsGeneBio,header=1,sep="\t")
-EnsGeneBioDF <- EnsGeneBioDF[EnsGeneBioDF$Transcript_Biotype==BioType,]
+EnsGeneBioDF <- EnsGeneBioDF[EnsGeneBioDF$gene_biotype==BioType,]
 #write.csv(EnsGeneBioDF,file=paste0(OutDir, "/nsemblbiodf.test.txt"))
 
 #########Different Expression Gene Select ################
@@ -43,9 +43,9 @@ library(tidyr)
 
 print("##########DESeq2 analysis##########")
 MatrixCountDF <- read.csv(MatrixCount,header=1,row.names=1,sep="\t")
-#print(EnsGeneBioDF$ENSEMBL)
+#print(EnsGeneBioDF$gene_id)
 #print("gap")
-MatrixCountDF <- MatrixCountDF[which(rownames(MatrixCountDF) %in% EnsGeneBioDF$GENE),]
+MatrixCountDF <- MatrixCountDF[which(rownames(MatrixCountDF) %in% EnsGeneBioDF$gene_name),]
 #write.csv(MatrixCountDF,file=paste0(OutDir, "/test.txt"))
 MatrixCountDF <- 2^MatrixCountDF -1
 MatrixCountCts <- as.matrix(MatrixCountDF)
@@ -84,16 +84,16 @@ ggsave(paste0(OutDir, "/DESeq2.DEG.",BioType,".Volcano.pdf"), plot = p_volcano,w
 library(pheatmap)
 DegSelect <- ResultAnno[-log10(ResultAnno$padj)> 30,]
 DegSelect <- slice_max(DegSelect,order_by=log2FoldChange,n=200)
-EnsGeneList <- EnsGeneBioDF[which(EnsGeneBioDF$GENE %in% rownames(DegSelect)),]
+EnsGeneList <- EnsGeneBioDF[which(EnsGeneBioDF$gene_name %in% rownames(DegSelect)),]
 #write.csv(EnsGeneList,file=paste0(OutDir, "/TEST2.csv"))
 MatrixTpmDF <- read.csv(MatrixTpm,header=1,row.names=1,sep="\t")
-MatrixTpmSelectDF <- MatrixTpmDF[which(rownames(MatrixTpmDF) %in% EnsGeneList$ENSEMBL),]
-MatrixTpmSelectmergeDF <-merge(MatrixTpmSelectDF,EnsGeneList,by.x=0,by.y="ENSEMBL")
+MatrixTpmSelectDF <- MatrixTpmDF[which(rownames(MatrixTpmDF) %in% EnsGeneList$gene_id),]
+MatrixTpmSelectmergeDF <-merge(MatrixTpmSelectDF,EnsGeneList,by.x=0,by.y="gene_id")
 #write.csv(MatrixTpmSelectmergeDF,file=paste0(OutDir, "/TEST.csv"))
-rownames(MatrixTpmSelectmergeDF) <- MatrixTpmSelectmergeDF$GENE
+rownames(MatrixTpmSelectmergeDF) <- MatrixTpmSelectmergeDF$gene_name
 MatrixTpmSelectmergeDF$Row.names <- NULL
-MatrixTpmSelectmergeDF$GENE <- NULL
-MatrixTpmSelectmergeDF$Transcript_Biotype <- NULL
+MatrixTpmSelectmergeDF$gene_name <- NULL
+MatrixTpmSelectmergeDF$gene_biotype <- NULL
 #write.csv(MatrixTpmSelectmergeDF,file=paste0(OutDir, "/TEST3.csv"))
 p_heatmap <- pheatmap(MatrixTpmSelectmergeDF,cluster_rows= FALSE,cluster_cols=FALSE,fontsize_col=2,
 		xlab='', ylab="", fontsize_row=2,cellheight=2,main= "TPM heatmap gene of top200  Cancer vs Control")
@@ -102,15 +102,15 @@ dev.off()
 
 DegSelect <- ResultAnno[-log10(ResultAnno$padj)> 30,]
 DegSelect <- slice_max(DegSelect,order_by=log2FoldChange,n=100)
-EnsGeneList <- EnsGeneBioDF[which(EnsGeneBioDF$GENE %in% rownames(DegSelect)),]
+EnsGeneList <- EnsGeneBioDF[which(EnsGeneBioDF$gene_name %in% rownames(DegSelect)),]
 MatrixTpmDF <- read.csv(MatrixTpm,header=1,row.names=1,sep="\t")
-MatrixTpmSelectDF <- MatrixTpmDF[which(rownames(MatrixTpmDF) %in% EnsGeneList$ENSEMBL),]
-MatrixTpmSelectmergeDF <-merge(MatrixTpmSelectDF,EnsGeneList,by.x=0,by.y="ENSEMBL")
-rownames(MatrixTpmSelectmergeDF) <- MatrixTpmSelectmergeDF$GENE
+MatrixTpmSelectDF <- MatrixTpmDF[which(rownames(MatrixTpmDF) %in% EnsGeneList$gene_id),]
+MatrixTpmSelectmergeDF <-merge(MatrixTpmSelectDF,EnsGeneList,by.x=0,by.y="gene_id")
+rownames(MatrixTpmSelectmergeDF) <- MatrixTpmSelectmergeDF$gene_name
 MatrixTpmSelectmergeDF$Row.names <- NULL
-MatrixTpmSelectmergeDF$GENE <- NULL
-MatrixTpmSelectmergeDF$Transcript_Biotype <- NULL
+MatrixTpmSelectmergeDF$gene_name <- NULL
+MatrixTpmSelectmergeDF$gene_biotype <- NULL
 p_heatmap <- pheatmap(MatrixTpmSelectmergeDF,cluster_rows= FALSE,cluster_cols=FALSE,fontsize_col=2,
-		xlab='', ylab="", fontsize_row=3,cellheight=2,main= "TPM heatmap gene of top100  Cancer vs Control")
+		xlab='', ylab="", fontsize_row=3,cellheight=2,main= "TPM heatmap gene of top200  Cancer vs Control")
 ggsave(paste0(OutDir,"/DESeq2.DEG.",BioType,".TPM.Heatmap.gene.of.top100.pdf"),plot = p_heatmap,width=10,height=8)
 dev.off()
