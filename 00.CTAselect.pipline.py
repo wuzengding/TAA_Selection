@@ -6,7 +6,7 @@
 ##########################################################################
 
 
-configfile: os.path.join("/mnt/data2/wuzengding/docker_data/14.Xena_UCSC/DEGscript","Config.pipline.json")
+configfile: os.path.join("/mnt/data2/wuzengding/docker_data/14.Xena_UCSC/TAA_Selection","Config.pipline.json")
 
 ConfigDir=config["ConfigDir"]
 Cancer=config["Cancer"]
