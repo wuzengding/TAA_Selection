@@ -9,22 +9,22 @@
 ## Config setting
 ### Making config files
 1.download file of TcgaTargetGtex_RSEM_Hugo_norm_count
-`
+```
 https://xenabrowser.net/datapages/?dataset=TcgaTargetGtex_RSEM_Hugo_norm_count&host=https%3A%2F%2Ftoil.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443
-`
+```
 
 2.download file of TcgaTargetGtex_rsem_gene_tpm
-`
+```
 https://xenabrowser.net/datapages/?dataset=TcgaTargetGtex_rsem_gene_tpm&host=https%3A%2F%2Ftoil.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443
-`
+```
 
 3.download file of TcgaTargetGTEX_phenotype.txt
-`
+```
 https://xenabrowser.net/datapages/?dataset=TcgaTargetGTEX_phenotype.txt&host=https%3A%2F%2Ftoil.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443
-`
+```
 
 4.make file of ensembleID2genename2biotype.txt
- `grep -v "^#" gencode.v32.chr_patch_hapl_scaff.annotation.gtf |cut -f9 |grep -v "transcript_id"|grep 'gene_name'|sed 's:;:\t:g'|awk  '{print $2"\t"$6"\t"$4}'|sed 's:"::g'|awk -F'\t' '{a[$2]=$0; b[$2]++;} END{for(i in a){if(b[i]==1){print a[i]}}}' >ensembleID2genename2biotype.txt `
+ ```grep -v "^#" gencode.v32.chr_patch_hapl_scaff.annotation.gtf |cut -f9 |grep -v "transcript_id"|grep 'gene_name'|sed 's:;:\t:g'|awk  '{print $2"\t"$6"\t"$4}'|sed 's:"::g'|awk -F'\t' '{a[$2]=$0; b[$2]++;} END{for(i in a){if(b[i]==1){print a[i]}}}' >ensembleID2genename2biotype.txt ```
 
 5.put all config files to  ConfigDir
  ```
