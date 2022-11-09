@@ -1,0 +1,9 @@
+{
+    "MatrixMakeSh":"/mnt/data2/wuzengding/docker_data/14.Xena_UCSC/DEGscript/01.matrix_make.sh",
+    "DiffExpGeneSelR": "/mnt/data2/wuzengding/docker_data/14.Xena_UCSC/DEGscript/02.different_expression_select.r",
+    "NegSelR":"/mnt/data2/wuzengding/docker_data/14.Xena_UCSC/DEGscript/03.negative_select_according_tissue.r",
+    "ConfigDir":"/mnt/data2/wuzengding/docker_data/14.Xena_UCSC/dataset",
+    "Cancer": "LAML",
+    "BioType":"protein_coding",
+    "OutDir":"/mnt/data2/wuzengding/docker_data/14.Xena_UCSC/DEGscript/test_result"
+}
