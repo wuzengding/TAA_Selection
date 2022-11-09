@@ -5,9 +5,9 @@
     Those TAA/CTA were regarded as ideal targets in cancer vaccine therapy, for example  BioNtech's BNT111 of FixVac products include the CTA of MAGE-3.
     <h3 align="left">
       <br>
-      TAA_selection pipeline
+                    TAA_selection pipeline
       <br>
-      <a href="https://github.com/wuzengding/TAA_Selection/"><img src="img/TAA_selection.png" alt="TAA_Selection" width="500"></a>
+      <a href="https://github.com/wuzengding/TAA_Selection/"><img src="img/TAA_selection.png" alt="TAA_Selection" width="800"></a>
       <br>
     </h3>
 
