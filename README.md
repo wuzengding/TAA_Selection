@@ -7,7 +7,7 @@
       <br>
                     TAA_selection pipeline
       <br>
-      <a href="https://github.com/wuzengding/TAA_Selection/"><img src="img/TAA_selection.png" alt="TAA_Selection" width="800"></a>
+      <a href="https://github.com/wuzengding/TAA_Selection/"><img src="img/TAA_selection.png" alt="TAA_Selection" width="1000"></a>
       <br>
     </h3>
 
