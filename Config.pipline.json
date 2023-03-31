@@ -1,9 +1,9 @@
 {
-    "MatrixMakeSh":"/mnt/data2/wuzengding/docker_data/14.Xena_UCSC/DEGscript/01.matrix_make.sh",
-    "DiffExpGeneSelR": "/mnt/data2/wuzengding/docker_data/14.Xena_UCSC/DEGscript/02.different_expression_select.r",
-    "NegSelR":"/mnt/data2/wuzengding/docker_data/14.Xena_UCSC/DEGscript/03.negative_select_according_tissue.r",
-    "ConfigDir":"/mnt/data2/wuzengding/docker_data/14.Xena_UCSC/dataset",
+    "MatrixMakeSh":"/mnt/data2/wuzengding/05.pipeline_dev/TAA_Selection_human/TAA_Selection/01.matrix_make.sh",
+    "DiffExpGeneSelR": "/mnt/data2/wuzengding/05.pipeline_dev/TAA_Selection_human/TAA_Selection/02.different_expression_select.r",
+    "NegSelR":"/mnt/data2/wuzengding/05.pipeline_dev/TAA_Selection_human/TAA_Selection/03.negative_select_according_tissue.r",
+    "ConfigDir":"/mnt/data2/wuzengding/05.pipeline_dev/TAA_Selection_human/dataset",
     "Cancer": "LAML",
     "BioType":"protein_coding",
-    "OutDir":"/mnt/data2/wuzengding/docker_data/14.Xena_UCSC/DEGscript/test_result"
+    "OutDir":"/mnt/data2/wuzengding/05.pipeline_dev/TAA_Selection_human/TAA_Selection/test_result"
 }

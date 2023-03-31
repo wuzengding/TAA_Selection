@@ -1,0 +1,5 @@
+Config file /mnt/data2/wuzengding/05.pipeline_dev/TAA_Selection_human/TAA_Selection/Config.pipline.json is extended by additional config specified via the command line.
+Building DAG of jobs...
+MissingInputException in line 76 of /mnt/data2/wuzengding/05.pipeline_dev/TAA_Selection_human/TAA_Selection/00.CTAselect.pipline.py:
+Missing input files for rule DEGselect:
+/mnt/data2/wuzengding/docker_data/14.Xena_UCSC/dataset/ensembleID2genename2biotype.txt
